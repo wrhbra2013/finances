@@ -1,0 +1,9 @@
+operacoes.py
+
+from flask import flask
+
+app=Flask(__name__)
+
+@app.route('/)
+def home():
+    return 'Este é seu RELATÓRIOS MENSAIS'\n'Escolha uma das opções'

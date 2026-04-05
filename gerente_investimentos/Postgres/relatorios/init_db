@@ -1,0 +1,27 @@
+import psycopg2
+#Gerando conexão e bamco de dados padrão
+
+connection = psycopg2.connect(dbname='postgres', user='root', password='postgres')
+                          
+
+cur = connection.cursor()
+
+with open("tabela.sql") as arquivo:
+    cur.execute(arquivo.read())
+
+print('Neste ponto, as tabelas ORÇAMENTO e INVEST(COMPRA & VENDA) foi criada com sucesso.')
+
+
+cur.execute("insert into orcamento (descricao, preco) values ('mercado','10,00');")
+print('Item adicionado com sucesso no orçamento')
+
+cur.execute("insert into invest_compra (ativo, quant, preco) values ('abcd3','2000','1,00');")
+print('Compra registrada')
+
+cur.execute("insert into invest_venda (ativo, quant, preco) values ('abcd3','2000','10,00');")
+print('Venda registrada')
+
+
+arquivo.close()
+connection.commit()
+connection.close()
